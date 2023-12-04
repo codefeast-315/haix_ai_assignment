@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+
+    background-color: tomato;
+    height: 100vh;
+}
+
+.button{
+    padding: 8px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+}
