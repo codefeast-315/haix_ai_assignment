@@ -3,9 +3,10 @@ import styles from "./styles/index.module.css";
 import { assets } from "../../assets";
 import Analyser from "./components/Analyser";
 import { companies } from "./jsons/companies";
+import CompanyButton from "./components/CompanyButton";
+import SocialInput from "./components/SocialInput";
 const DayWeekMonth = () => {
-
-  const [selectedCompanies, setSelectedCompanies] = React.useState(['apple']);
+  const [selectedCompanies, setSelectedCompanies] = React.useState(["apple"]);
 
   const socials = [
     {
@@ -27,18 +28,11 @@ const DayWeekMonth = () => {
       <h1>Portfolio Comparision</h1>
       <div className={styles.companies_container}>
         {companies.map((item) => (
-          <button
-            onClick={() => {
-                setSelectedCompanies([item.name]);
-            }}
-            className={`${styles.companies_container_button} ${
-              selectedCompanies.includes(item.name)
-                ? styles.companies_button_clicked
-                : ""
-            }`}
-          >
-            {item.name}
-          </button>
+          <CompanyButton
+            selectedCompanies={selectedCompanies}
+            setSelectedCompanies={setSelectedCompanies}
+            item={item}
+          />
         ))}
       </div>
 
@@ -58,7 +52,7 @@ const DayWeekMonth = () => {
 
           <div>
             <p>Number of days</p>
-            <input type="number" />
+            <input min={0}  type="number" />
           </div>
         </div>
         <button className={styles.search_button}>
@@ -95,21 +89,7 @@ const DayWeekMonth = () => {
       )}
 
       {selectedCompanies.map((item) => {
-        return (
-          <div className={styles.socials_container}>
-            {socials.map((item2, index) => (
-              <div className={styles.input_social_container}>
-                <div className={styles.input_social_container_box_1}>
-                  <img src={item2.image} alt="social" />
-                </div>
-
-                <div className={styles.input_social_container_box_2}>
-                  <input value={item} type="text" disabled={true} />
-                </div>
-              </div>
-            ))}
-          </div>
-        );
+        return <SocialInput item={item} socials={socials} />;
       })}
 
       <div className={styles.tab}>

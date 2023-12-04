@@ -54,10 +54,12 @@ const Analyser = ({ selectedCompanies }) => {
     selectedCompanies.forEach((company, index) => {
       const companyIndex = companies.findIndex((item) => item.name === company);
 
-      selectedAnalysis.forEach((item) => {
+
+      selectedAnalysis.forEach((item,index2) => {
         const tempIndex = temp.findIndex((item2) => item2.title === item);
         temp[tempIndex].data.push({
-          type: "scatter",
+          type: index2%2===0? "line":"bar",
+          name: company,
           mode: "lines+markers",
           marker: { color: colors[index] },
           x: companies[companyIndex].data.map((item2) => item2?.date),
@@ -71,7 +73,6 @@ const Analyser = ({ selectedCompanies }) => {
   }, [selectedCompanies, selectedAnalysis]);
 
   useEffect(() => {
-    // Your Plotly code goes here
     const data = [
       {
         x: [1, 2, 3, 4, 5],

@@ -40,10 +40,10 @@ const Analyser = ({ selectedCompanies }) => {
     selectedCompanies.forEach((company, index) => {
       const companyIndex = companies.findIndex((item) => item.name === company);
 
-      selectedAnalysis.forEach((item) => {
+      selectedAnalysis.forEach((item,index2) => {
         const tempIndex = temp.findIndex((item2) => item2.title === item);
         temp[tempIndex].data.push({
-          type: "bar",
+          type: index2%2===0 ? "bar" : "scatter",
           mode: "lines+markers",
           marker: { color: colors[index] },
           x: data
